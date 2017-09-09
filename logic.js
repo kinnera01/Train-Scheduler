@@ -12,11 +12,11 @@ var config = {
   firebase.initializeApp(config);
   var provider = new firebase.auth.GoogleAuthProvider();  
   function googleSignin() {
-    $(".row").hide();
-         firebase.auth()
+             firebase.auth()
           .signInWithPopup(provider).then(function (result) {
               var token = result.credential.accessToken;
               var user = result.user;
+              $(".row").hide();
               $(".row").show();
               login();
           }).catch(function (error) {
