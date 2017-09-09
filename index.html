@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Train Scheduler</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+        <!-- Firebase Reference -->
+        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+        <!-- moment js-->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+</head>
+<body>
+    
+    <style>
+        .jumbotron {
+            background-image: url("https://i.pinimg.com/originals/ac/a2/cd/aca2cd07e0f420e9e88012a7b8cc8ede.jpg");
+            background-color: #17234E;
+            margin-bottom: 10;
+            min-height: 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            -webkit-background-size: cover;
+            background-size: cover;
+            height: 200px;
+            color: cornsilk;
+        }
+
+        #data {
+            float: right;
+        }
+
+        #add {
+            float: left;
+        }
+
+        .col-md-3,
+        .col-md-8 {
+            padding: 0px;
+        }
+
+        .panel-default>.panel-heading {
+            background-color: grey;
+            color: cornsilk;
+        }
+
+        h3,h1 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+           
+        }
+
+        .panel-title {
+            font-size:20px;
+        }
+        .lead{
+            margin-top: 0;
+            text-align:center;
+           
+        }
+    </style>
+  <div class="container-fluid ">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+               <h1 class="lead"> Find your Next train!!</h1>
+        </div>
+    </div>
+    <div class="panel panel-default col-md-8" id ="data">
+        <div class="panel-heading " >
+            <h3 class="panel-title">Train Schedule</h3>
+        </div>
+        <div class="panel-body">
+                <table class="table table-responsive">
+                        <thead>
+                          <tr>
+                            <th>Train Name</th>
+                            <th>Destination</th>
+                            <th>Frequency(min)</th>
+                            <th>Next Arrival</th>
+                            <th>Minutes Away</th>
+                          </tr>
+                        </thead>
+                        <tbody id ="traindetails">
+                          </tbody>
+                      </table>
+        </div>
+    </div>
+    <div class="panel panel-default col-md-3" id= "add">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add Train</h3>
+        </div>
+        <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label for="TrainName">Train Name</label>
+                <input type="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Train Name">
+            </div>
+            <div class="form-group">
+                <label for="Destination">Destination</label>
+                <input type="Destination" class="form-control" id="destination" placeholder="Destination place">
+            </div>
+            <div class="form-group">
+                    <label for="time">First Train Time(HH:MM)</label>
+                    <input type="time" class="form-control" id="time" placeholder="00:00" >
+            </div>
+            <div class="form-group">
+                    <label for="minutes">Frequency (min)</label>
+                    <input type="minutes" class="form-control" id="minutes" placeholder=":00">
+            </div>
+            <button type="submit" class="btn btn-primary"id="submit">Submit</button>
+        </form>
+        </div>
+    </div>
+    
+    </div>
+  </div>
+  <script src="logic.js"></script>
+  </script>
+</body>
+
+</html>
