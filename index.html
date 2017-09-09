@@ -15,6 +15,7 @@
         <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
         <!-- moment js-->
        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+       <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     
@@ -63,11 +64,19 @@
             text-align:center;
            
         }
+       #goo{
+            background-color:cornsilk;
+            color: black;
+            margin-left: 500px;
+            font-size: 20px;
+           
+        }
     </style>
   <div class="container-fluid ">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
                <h1 class="lead"> Find your Next train!!</h1>
+               <button onclick = "googleSignin()"id="goo">Google Signin</button>
         </div>
     </div>
     <div class="panel panel-default col-md-8" id ="data">

@@ -3,25 +3,9 @@
 // Initialize Firebase
 // Make sure to match the configuration to the script version number in the HTML
 // (Ex. 3.0 != 3.7.0)    
-// console.log("HI");  
-var provider = new firebase.auth.GoogleAuthProvider();
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});  
+// console.log("HI"); 
+$("#data").hide();
+$("#id").hide(); 
 var config = {
     apiKey: "AIzaSyC3Vx2OaRdmaYRmLahrPgapg4NmHeTJ8qk",
     authDomain: "myproject-kin.firebaseapp.com",
@@ -31,10 +15,36 @@ var config = {
     messagingSenderId: "325168750428"
   };
   firebase.initializeApp(config);
+  var provider = new firebase.auth.GoogleAuthProvider();  
+  function googleSignin() {
+    
+      firebase.auth()
+          .signInWithPopup(provider).then(function (result) {
+              var token = result.credential.accessToken;
+              var user = result.user;
+              console.log(token)
+              console.log(user)
+          }).catch(function (error) {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.log(error.code)
+              console.log(error.message)
+          });
+  }
+  function googleSignout() {
+      firebase.auth().signOut()
+
+          .then(function () {
+              console.log('Signout Succesfull')
+          }, function (error) {
+              console.log('Signout Failed')
+          });
+  }
   
   // Create a variable to reference the database.
   var db = firebase.database();
-  
+  $("#data").show();
+  $("#id").show();
   // -----------------------------
   var name = "";
   var destination = "";
