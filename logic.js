@@ -35,12 +35,11 @@ $(document).ready(function () {
 
   })
   $(document).on("click", ".signOut", function () {
-    $(".row").hide();
-    firebase.auth().signOut()
-      .then(function () {
-        console.log('Signout Succesfull')
+       firebase.auth().signOut().then(function () {
+        $(".row").hide();
+        console.log('Signout Succesfull');
       }, function (error) {
-        console.log('Signout Failed')
+        console.log('Signout Failed');
       });
     $(this).removeClass('signOut')
       .addClass('signIn')
