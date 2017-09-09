@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
- 
+// $("#data").hide();
+// $("#id").hide(); 
 var config = {
     apiKey: "AIzaSyC3Vx2OaRdmaYRmLahrPgapg4NmHeTJ8qk",
     authDomain: "myproject-kin.firebaseapp.com",
@@ -10,13 +11,16 @@ var config = {
     messagingSenderId: "325168750428"
   };
   firebase.initializeApp(config);
+  $(".row").hide();
   var provider = new firebase.auth.GoogleAuthProvider();  
-  function googleSignin() {
-             firebase.auth()
+  // function googleSignin() {
+    $("#goo").on("click",function(){
+         firebase.auth()
           .signInWithPopup(provider).then(function (result) {
               var token = result.credential.accessToken;
               var user = result.user;
-              $(".row").hide();
+              // console.log(token)
+              // console.log(user)
               $(".row").show();
               login();
           }).catch(function (error) {
@@ -25,8 +29,7 @@ var config = {
               console.log(error.code)
               console.log(error.message)
           });
-  }
-  
+  })
   function googleSignout() {
       firebase.auth().signOut()
 
