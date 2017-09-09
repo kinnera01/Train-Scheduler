@@ -16,9 +16,7 @@ var config = {
           .signInWithPopup(provider).then(function (result) {
               var token = result.credential.accessToken;
               var user = result.user;
-              // console.log(token)
-              // console.log(user)
-              $(".row").show();
+              $("row").show();
               login();
           }).catch(function (error) {
               var errorCode = error.code;
@@ -27,6 +25,7 @@ var config = {
               console.log(error.message)
           });
   }
+  
   function googleSignout() {
       firebase.auth().signOut()
 
