@@ -14,7 +14,7 @@ $(document).ready(function () {
   $(".row").hide();
   var provider = new firebase.auth.GoogleAuthProvider();
   // function googleSignin() {
-  $("#goo").on("click", ".signIn", function () {
+  $(document).on("click", ".signIn", function () {
     firebase.auth()
       .signInWithPopup(provider).then(function (result) {
         var token = result.credential.accessToken;
@@ -34,7 +34,7 @@ $(document).ready(function () {
     $(this).text('Sign Out Of Google');
 
   })
-  $('#goo').on("click", ".signOut", function () {
+  $(document).on("click", ".signOut", function () {
     firebase.auth().signOut()
       .then(function () {
         console.log('Signout Succesfull')
