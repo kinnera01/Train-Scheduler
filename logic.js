@@ -1,7 +1,5 @@
 
 $(document).ready(function(){
-$("#data").hide();
-$("#id").hide(); 
 var config = {
     apiKey: "AIzaSyC3Vx2OaRdmaYRmLahrPgapg4NmHeTJ8qk",
     authDomain: "myproject-kin.firebaseapp.com",
