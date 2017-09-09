@@ -1,9 +1,5 @@
-/* global moment firebase */
 
-// Initialize Firebase
-// Make sure to match the configuration to the script version number in the HTML
-// (Ex. 3.0 != 3.7.0)    
-// console.log("HI"); 
+$(document).ready(function(){
 $("#data").hide();
 $("#id").hide(); 
 var config = {
@@ -15,15 +11,17 @@ var config = {
     messagingSenderId: "325168750428"
   };
   firebase.initializeApp(config);
+  $(".row").hide();
   var provider = new firebase.auth.GoogleAuthProvider();  
   function googleSignin() {
-    
-      firebase.auth()
+         firebase.auth()
           .signInWithPopup(provider).then(function (result) {
               var token = result.credential.accessToken;
               var user = result.user;
-              console.log(token)
-              console.log(user)
+              // console.log(token)
+              // console.log(user)
+              $(".row").show();
+              login();
           }).catch(function (error) {
               var errorCode = error.code;
               var errorMessage = error.message;
@@ -42,10 +40,9 @@ var config = {
   }
   
   // Create a variable to reference the database.
+  function login(){
   var db = firebase.database();
-  $("#data").show();
-  $("#id").show();
-  // -----------------------------
+   // -----------------------------
   var name = "";
   var destination = "";
   var frequency = "";
@@ -107,7 +104,8 @@ var config = {
           "<td>" + tf + "</td>" + "<td>" + nextTrainArrival + "</td>" +  "<td>" + minutes + "</td>" + "</tr>");
       // Handle the errors
 
-  }, function (errorObject) {
+  }), function (errorObject) {
       console.log("Errors handled: " + errorObject.code);
-  });
-  
+  }
+}
+});
