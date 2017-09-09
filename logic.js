@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-  $(".row").hide();
+ 
 var config = {
     apiKey: "AIzaSyC3Vx2OaRdmaYRmLahrPgapg4NmHeTJ8qk",
     authDomain: "myproject-kin.firebaseapp.com",
@@ -10,9 +10,9 @@ var config = {
     messagingSenderId: "325168750428"
   };
   firebase.initializeApp(config);
-  
   var provider = new firebase.auth.GoogleAuthProvider();  
   function googleSignin() {
+    $(".row").hide();
          firebase.auth()
           .signInWithPopup(provider).then(function (result) {
               var token = result.credential.accessToken;
