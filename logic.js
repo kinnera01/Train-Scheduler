@@ -37,6 +37,7 @@ $(document).ready(function () {
   $(document).on("click", ".signOut", function () {
     firebase.auth().signOut()
       .then(function () {
+        $(".row").hide();
         console.log('Signout Succesfull')
       }, function (error) {
         console.log('Signout Failed')
