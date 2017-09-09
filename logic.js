@@ -29,9 +29,9 @@ $(document).ready(function () {
         console.log(error.code)
         console.log(error.message)
       });
-    $(this).removeClass("signIn");
-    $(this).addclass("signOut");
-    $(this).text('Sign Out Of Google');
+    $(this).removeClass("signIn")
+   .addClass("signOut")
+  .text('Sign Out Of Google');
 
   })
   $(document).on("click", ".signOut", function () {
@@ -43,7 +43,7 @@ $(document).ready(function () {
       });
     $(this).removeClass('signOut')
       .addClass('signIn')
-      .text('Sign In With Google To See Schedule');
+      .text('Google SignIn');
   })
 
   // Create a variable to reference the database.
