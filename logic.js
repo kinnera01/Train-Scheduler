@@ -108,10 +108,7 @@ $(document).ready(function () {
 
       // Append train info to table on page
       $("#traindetails").append("<tr>" + "<td>" + tn + "</td>" + "<td>" + td + "</td>" +
-        "<td>" + tf + "</td>" + "<td>" + nextTrainArrival + "</td>" + "<td>" + minutes + "</td>" + $("<button>")
-        .addClass("delete btn btn-sm btn-danger")
-        .attr("data-train", trainKey)
-        .html($("<i>").addClass("glyphicon glyphicon-remove")+"</tr>"));
+        "<td>" + tf + "</td>" + "<td>" + nextTrainArrival + "</td>" + "<td>" + minutes + "</td>"+"</tr>");
       // Handle the errors
 
     }), function (errorObject) {
