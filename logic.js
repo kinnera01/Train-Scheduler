@@ -3,12 +3,12 @@ $(document).ready(function () {
   // $("#data").hide();
   // $("#id").hide(); 
   var config = {
-    apiKey: "AIzaSyC3Vx2OaRdmaYRmLahrPgapg4NmHeTJ8qk",
-    authDomain: "myproject-kin.firebaseapp.com",
-    databaseURL: "https://myproject-kin.firebaseio.com",
-    projectId: "myproject-kin",
-    storageBucket: "myproject-kin.appspot.com",
-    messagingSenderId: "325168750428"
+    apiKey: "AIzaSyAi1_4Silr5JiJIVS-3jHxi0mhgiFsjW4s",
+    authDomain: "train-5392e.firebaseapp.com",
+    databaseURL: "https://train-5392e.firebaseio.com",
+    projectId: "train-5392e",
+    storageBucket: "train-5392e.appspot.com",
+    messagingSenderId: "844829732468"
   };
   firebase.initializeApp(config);
   $(".row").hide();
@@ -108,7 +108,10 @@ $(document).ready(function () {
 
       // Append train info to table on page
       $("#traindetails").append("<tr>" + "<td>" + tn + "</td>" + "<td>" + td + "</td>" +
-        "<td>" + tf + "</td>" + "<td>" + nextTrainArrival + "</td>" + "<td>" + minutes + "</td>" + "</tr>");
+        "<td>" + tf + "</td>" + "<td>" + nextTrainArrival + "</td>" + "<td>" + minutes + "</td>" + $("<button>")
+        .addClass("delete btn btn-sm btn-danger")
+        .attr("data-train", trainKey)
+        .html($("<i>").addClass("glyphicon glyphicon-remove")+"</tr>"));
       // Handle the errors
 
     }), function (errorObject) {
