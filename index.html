@@ -76,6 +76,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
                <h1 class="lead"> Find your Next train!!</h1>
+               <small class="current-time"></small></h1>
                <!-- <button onclick = "googleSignin()"id="goo">Google SignIn</button> -->
                <button id="goo"class="signIn">Google SignIn</button>
                <!-- <button id="goo" class="hide">Google SignOut</button> -->
@@ -120,6 +121,12 @@
                     <label for="time">First Train Time(HH:MM)</label>
                     <input type="time" class="form-control" id="time" placeholder="00:00" >
             </div>
+            <fieldset disabled>
+                    <div class="form-group hidden">
+                      <label for="trainKey">Train Key</label>
+                      <input type="text" id="trainKey" class="form-control" placeholder="Disabled input">
+                    </div>
+                  </fieldset>
             <div class="form-group">
                     <label for="minutes">Frequency (min)</label>
                     <input type="minutes" class="form-control" id="minutes" placeholder=":00">

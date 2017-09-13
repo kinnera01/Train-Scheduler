@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+  // $("#data").hide();
+  // $("#id").hide(); 
   var config = {
     apiKey: "AIzaSyAi1_4Silr5JiJIVS-3jHxi0mhgiFsjW4s",
     authDomain: "train-5392e.firebaseapp.com",
@@ -9,12 +11,12 @@ $(document).ready(function () {
     messagingSenderId: "844829732468"
   };
   firebase.initializeApp(config);
+  //Run Clock  
   setInterval(function(){
     $('.current-time').html(moment().format('hh:mm:ss A'))
   }, 1000);
 
   $(".row").hide();
-  // Auth using a popup.
   var provider = new firebase.auth.GoogleAuthProvider();
   // function googleSignin() {
   $(document).on("click", ".signIn", function () {
@@ -35,6 +37,7 @@ $(document).ready(function () {
     $(this).removeClass("signIn")
    .addClass("signOut")
   .text('Sign Out Of Google');
+
   })
   $(document).on("click", ".signOut", function () {
        firebase.auth().signOut().then(function () {
@@ -51,6 +54,7 @@ $(document).ready(function () {
   // Create a variable to reference the database.
   function login() {
     var db = firebase.database();
+    // -----------------------------
     var name = "";
     var destination = "";
     var frequency = "";
@@ -59,70 +63,31 @@ $(document).ready(function () {
     var minutesAway = "";
     var editTrainKey = '';
     var fbTime = moment();
-    var newTime;
-
     $("#submit").on("click", function (event) {
       event.preventDefault();
       // Grabbed values from text boxes
       name = $("#name").val().trim();
       destination = $("#destination").val().trim();
-      // Convert to Unix
       start_time = moment($("#time").val().trim(), "HH:mm").subtract(1, "years").format("X");
       frequency = $("#minutes").val().trim();
-     if ( name  != '' && destination != '' && start_time != '' && frequency != '') {
-       // Clear form data
+
       $("#name").val("");
       $("#destination").val("");
       $("#time").val("");
       $("#minutes").val("");
-      $('#frequency').val('');
-      $('#trainKey').val('');
       fbTime = moment().format('X');
       // Code for handling the push
-      if (editTrainKey == ''){ 
-        dataRef.ref().child('trains').push({
-          trainName: trainName,
-          trainDestination: trainDestination,
-          trainTime: trainTime,
-          trainFreq: trainFreq,
-          currentTime: fbTime,
-        })
-      } else if (editTrainKey != '') {
-        dataRef.ref('trains/' + editTrainKey).update({
-          trainName: trainName,
-          trainDestination: trainDestination,
-          trainTime: trainTime,
-          trainFreq: trainFreq,
-          currentTime: fbTime,
-        })
-        editTrainKey = '';
-      }
-      $('.help-block').removeClass('bg-danger');
-    } else {
-      $('.help-block').addClass('bg-danger');
-    }
-  });
-  function timeUpdater() {
-    dataRef.ref().child('trains').once('value', function(snapshot){
-      snapshot.forEach(function(childSnapshot){
-        fbTime = moment().format('X');
-        dataRef.ref('trains/' + childSnapshot.key).update({
-        currentTime: fbTime,
-        })
-      })    
-    });
-  };
-  setInterval(timeUpdater, 5000);
       db.ref().push({
         name: name,
         destination: destination,
         start_time: start_time,
         frequency: frequency,
-        //   nextArrival: nextArrival,
-        //   minutesAway: minutesAway,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
+           dateAdded: firebase.database.ServerValue.TIMESTAMP
 
       });
+    });
+
+
     // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
     db.ref().orderByChild("dateAdded").on("child_added", function (snapshot) {
       // storing the snapshot.val() in a variable for convenience
@@ -146,28 +111,22 @@ $(document).ready(function () {
       console.log(moment().format("X"));
 
       // Append train info to table on page
-      $("#traindetails").append("<tr>" + "<td>" + tn + "</td>" + "<td>" + td + "</td>" +
-        "<td>" + tf + "</td>" + "<td>" + nextTrainArrival + "</td>" + "<td>" + minutes + "</td>"+"</tr>"+"</td><td><button class='edit btn' data-train=" + trainClass + "><i class='glyphicon glyphicon-pencil'></i></button><button class='delete btn' data-train=" + trainClass + "><i class='glyphicon glyphicon-remove'></i></button></td>");
+      $("#traindetails").append("<tr>" + 
+      "<td>" + tn + "</td>" +
+       "<td>" + td + "</td>" +
+        "<td>" + tf + "</td>" +
+         "<td>" + nextTrainArrival + "</td>" + 
+         "<td>" + minutes + "</td>"+
+        //  "<td><button class='delete btn'><i class='glyphicon glyphicon-remove'></i></button></td>"+
+         "</tr>");
       // Handle the errors
-
     }), function (errorObject) {
       console.log("Errors handled: " + errorObject.code);
     }
-    $(document).on('click','.delete', function(){
-      var trainKey = $(this).attr('data-train');
-      dataRef.ref("trains/" + trainKey).remove();
-      $('.'+ trainKey).remove();
-    });
-  }
-    $(document).on('click','.edit', function(){
-      editTrainKey = $(this).attr('data-train');
-      dataRef.ref("trains/" + editTrainKey).once('value').then(function(childSnapshot) {
-        $('#trainName').val(childSnapshot.val().trainName);
-        $('#trainDestination').val(childSnapshot.val().trainDestination);
-        $('#firstTrain').val(moment.unix(childSnapshot.val().trainTime).format('HH:mm'));
-        $('#trainFrequency').val(childSnapshot.val().trainFreq);
-        $('#trainKey').val(childSnapshot.key);
-
-      })
-  })
+    // $(document).on('click','.delete', function(){
+    //   var trainKey = $(this).attr('data-train');
+    //   db.ref("trains/" + trainKey).remove();
+    //   $('.'+ trainKey).remove();
+    // });
+   }
 });
