@@ -123,9 +123,6 @@ $(document).ready(function () {
         dateAdded: firebase.database.ServerValue.TIMESTAMP
 
       });
-    });
-
-
     // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
     db.ref().orderByChild("dateAdded").on("child_added", function (snapshot) {
       // storing the snapshot.val() in a variable for convenience
@@ -161,7 +158,7 @@ $(document).ready(function () {
       dataRef.ref("trains/" + trainKey).remove();
       $('.'+ trainKey).remove();
     });
-
+  }
     $(document).on('click','.edit', function(){
       editTrainKey = $(this).attr('data-train');
       dataRef.ref("trains/" + editTrainKey).once('value').then(function(childSnapshot) {
@@ -171,5 +168,6 @@ $(document).ready(function () {
         $('#trainFrequency').val(childSnapshot.val().trainFreq);
         $('#trainKey').val(childSnapshot.key);
 
-      });
+      })
   })
+});
